@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  postgres:
+    image: bitnami/postgresql
+    ports:
+      - ${PG_PORT}:5432
+    environment:
+      - POSTGRESQL_USERNAME=${PG_USER}
+      - POSTGRESQL_PASSWORD=${PG_PASSWORD}
+      - POSTGRESQL_DATABASE=${PG_DB}
+
+    volumes:
+      - /postgres:/bitnami/postgresql
+
+volumes:
+  postgres:
