@@ -6,3 +6,42 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id String @id @default(uuid())
+  username String
+  email String @unique
+  password String
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  badgesRedeemed RedeemBadge[]
+
+  @@map("users")
+}
+
+model Badge {
+  id String @id @default(uuid())
+  slug String @unique
+  name String
+  urlImage String @map("url_image")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  usersRedeemed RedeemBadge[]
+
+  @@map("badges")
+}
+
+model RedeemBadge {
+  id String @id @default(uuid())
+
+  userId String @map("user_id")
+  badgeId String @map("badge_id")
+
+  user User @relation(fields: [userId], references: [id])
+  badge Badge @relation(fields: [badgeId], references: [id])
+
+  @@index([userId, badgeId])
+  @@map("redeem_badges")
+}
