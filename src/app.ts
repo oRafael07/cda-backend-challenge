@@ -29,6 +29,15 @@ app.register(fastifySwagger, {
       version: '1.0.0',
     },
     servers: [],
+    components: {
+      securitySchemes: {
+        apiKey: {
+          type: 'apiKey',
+          name: 'Authorization',
+          in: 'header',
+        },
+      },
+    },
   },
   transform: jsonSchemaTransform,
 })

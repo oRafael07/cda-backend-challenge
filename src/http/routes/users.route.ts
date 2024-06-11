@@ -11,9 +11,12 @@ import {
 } from '../controllers/dtos/create-account.d'
 import { AuthenticateUserController } from '../controllers/users/authenticate-user'
 import { CreateAccountController } from '../controllers/users/create-account'
+import { ProfileController } from '../controllers/users/profile'
+import { auth } from '../middlewares/auth'
 
 const createAccountController = new CreateAccountController()
 const authenticateUserController = new AuthenticateUserController()
+const profileUserController = new ProfileController()
 
 export async function UsersRoutes(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -33,7 +36,7 @@ export async function UsersRoutes(app: FastifyInstance) {
   )
 
   app.withTypeProvider<ZodTypeProvider>().post(
-    '/autheticate',
+    '/authenticate',
     {
       schema: {
         tags: ['Auth'],
@@ -47,4 +50,19 @@ export async function UsersRoutes(app: FastifyInstance) {
     },
     authenticateUserController.handle
   )
+
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .register(auth)
+    .get(
+      '/user/profile',
+      {
+        schema: {
+          tags: ['User'],
+          summary: 'Get user profile authenticated',
+          security: [{ apiKey: [] }],
+        },
+      },
+      profileUserController.handle
+    )
 }
