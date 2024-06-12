@@ -12,7 +12,6 @@ export const redeemBadgesResponseDTO = z.object({
     name: z.string(),
     urlImage: z.string(),
     createdAt: z.date(),
-    redeemedAt: z.date(),
   }),
 })
 

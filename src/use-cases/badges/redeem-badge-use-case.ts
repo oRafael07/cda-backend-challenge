@@ -60,7 +60,7 @@ export class RedeemBadgeUseCase {
 
     return right({
       message: 'Emblema resgatado com sucesso.',
-      redeemed_at: redeemedBadge.redeemedAt,
+      redeemedAt: redeemedBadge.redeemedAt,
       badge,
     })
   }

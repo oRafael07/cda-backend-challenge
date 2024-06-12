@@ -57,7 +57,7 @@ Id,Slug,Name,Image
 ### Install dependencies
 
 ```
-$ npm run install
+$ npm install
 ```
 
 ### Setup docker services
