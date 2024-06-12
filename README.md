@@ -12,14 +12,6 @@ A API deve permitir listar todos os emblemas registrados e permitir que um usuá
 
 - Listar todos os emblemas já resgatados por um usuário específico. ✔️
 
-## Restrições
-
-- O serviço deve ser escrito em NodeJS
-
-- O serviço deve armazenar informações em um banco de dados. Você pode escolher o banco que achar melhor. Preferencialmente utilizamos MySQL
-
-## Extra (Opcional)
-
 - Implementar **autenticação** ✔️
 
 - Documentar todos os endpoints da API, utilizando por exemplo **Swagger**. ✔️
@@ -27,14 +19,6 @@ A API deve permitir listar todos os emblemas registrados e permitir que um usuá
 - Implementar **paginação** no endpoint de listagem de emblemas ✔️
 
 - Adicionar a capacidade de filtrar os emblemas pelo **nome** no endpoint de listagem de emblemas. ✔️
-
-## Critérios de Avaliação:
-
-**Funcionalidade:** A API atende aos requisitos especificados, incluindo listagem e resgate de emblemas
-
-**Código:** O código deve estar bem organizado e seguir as melhores práticas de desenvolvimento em NodeJS/NestJS e Padrão RESTful.
-
-**Criatividade:** Implementações adicionais ou melhorias serão valorizadas.
 
 ## Emblemas
 
@@ -51,10 +35,6 @@ Id,Slug,Name,Image
 9,gato,Gato,https://cidadealtarp.com/imagens/challenge/gato.png
 10,urso,Urso,https://cidadealtarp.com/imagens/challenge/urso.png
 ```
-
-## API Documentation
-
-http://localhost:<port>/docs
 
 ## How to run project
 
