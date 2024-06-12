@@ -43,7 +43,7 @@ export class ProfileUserUseCase {
         badges_redeemed: badges.map((item) => {
           return {
             ...item.badge,
-            redeemed_at: item.redeemedAt,
+            redeemedAt: item.redeemedAt,
           }
         }),
       },
