@@ -11,6 +11,7 @@ import {
   redeemBadgesRequestParamsDTO,
   redeemBadgesResponseDTO,
 } from '../controllers/dtos/redeem-badges.d'
+import { UnauthorizedErrorResponse } from '../controllers/dtos/unauthorized.d'
 import { auth } from '../middlewares/auth'
 
 const redeemBadgeController = new RedeemBadgeController()
@@ -30,6 +31,7 @@ export async function BadgesRoutes(app: FastifyInstance) {
           params: redeemBadgesRequestParamsDTO,
           response: {
             201: redeemBadgesResponseDTO,
+            401: UnauthorizedErrorResponse,
           },
           security: [{ apiKey: [] }],
         },
@@ -50,6 +52,7 @@ export async function BadgesRoutes(app: FastifyInstance) {
           querystring: fetchBadgeRequestQueryDTO,
           response: {
             200: fetchBadgeResponseDTO,
+            401: UnauthorizedErrorResponse,
           },
           security: [{ apiKey: [] }],
         },

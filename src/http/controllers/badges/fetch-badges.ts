@@ -10,6 +10,7 @@ export class FetchBadgeController {
     req: FastifyRequest<{ Querystring: FetchBadgeRequestQueryDTOType }>,
     res: FastifyReply
   ) {
+    await req.getUserId()
     const { page, limit, name } = req.query
 
     const badgeRepository = new PrismaBadgeRepository()

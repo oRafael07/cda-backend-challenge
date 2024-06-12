@@ -6,7 +6,7 @@ export const redeemBadgesRequestParamsDTO = z.object({
 
 export const redeemBadgesResponseDTO = z.object({
   message: z.string(),
-  redeemed_at: z.date(),
+  redeemedAt: z.date(),
   badge: z.object({
     id: z.string(),
     name: z.string(),
