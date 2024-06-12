@@ -11,6 +11,7 @@
     "build": "tsup src --out-dir build",
     "start": "node build/server.js",
     "lint": "eslint ./src",
+    "db:migrations": "prisma migrate deploy",
     "db:seed": "prisma db seed"
   },
   "keywords": [],
