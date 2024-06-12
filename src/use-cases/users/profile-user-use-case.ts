@@ -1,7 +1,6 @@
 import { Badge } from '@prisma/client'
 
 import { Either, left, right } from '../../lib/either'
-import { BadgeRepository } from '../../repositories/badges.repository'
 import { RedeemBadgeRepository } from '../../repositories/redeem-badge.repository'
 import { UserRepository } from '../../repositories/users.repository'
 
