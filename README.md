@@ -52,6 +52,10 @@ Id,Slug,Name,Image
 10,urso,Urso,https://cidadealtarp.com/imagens/challenge/urso.png
 ```
 
+## API Documentation
+
+http://localhost:<port>/docs
+
 ## How to run project
 
 ### Install dependencies
