@@ -10,10 +10,18 @@ import {
   createAccountRequestBodyDTO,
   createAccountResponseBodySuccessDTO,
 } from '../controllers/dtos/create-account.d'
-import { profileAnotherUserRequestParamsDTO } from '../controllers/dtos/profile-another-user.d'
+import {
+  FetchUsersRequestQueryDTO,
+  fetchUsersResponseDTO,
+} from '../controllers/dtos/fetch-users.d'
+import {
+  profileAnotherUserRequestParamsDTO,
+  profileAnotherUserResponseDTO,
+} from '../controllers/dtos/profile-another-user.d'
 import { UnauthorizedErrorResponse } from '../controllers/dtos/unauthorized.d'
 import { AuthenticateUserController } from '../controllers/users/authenticate-user'
 import { CreateAccountController } from '../controllers/users/create-account'
+import { FetchUsersController } from '../controllers/users/fetch-users'
 import { ProfileController } from '../controllers/users/profile'
 import { auth } from '../middlewares/auth'
 
@@ -22,8 +30,29 @@ const getProfileAnotherUserController = new ProfileAnotherUserController()
 const createAccountController = new CreateAccountController()
 const authenticateUserController = new AuthenticateUserController()
 const profileUserController = new ProfileController()
+const fetchUserController = new FetchUsersController()
 
 export async function UsersRoutes(app: FastifyInstance) {
+  app
+    .withTypeProvider<ZodTypeProvider>()
+    .register(auth)
+    .get(
+      '/users',
+      {
+        schema: {
+          tags: ['User'],
+          summary: 'Fetch users',
+          description: 'This endpoint is possible to fetch all users',
+          querystring: FetchUsersRequestQueryDTO,
+          security: [{ apiKey: [] }],
+          response: {
+            200: fetchUsersResponseDTO,
+          },
+        },
+      },
+      fetchUserController.handle
+    )
+
   app.withTypeProvider<ZodTypeProvider>().post(
     '/users',
     {
@@ -68,6 +97,7 @@ export async function UsersRoutes(app: FastifyInstance) {
           security: [{ apiKey: [] }],
           response: {
             401: UnauthorizedErrorResponse,
+            200: profileAnotherUserResponseDTO,
           },
         },
       },
@@ -87,6 +117,7 @@ export async function UsersRoutes(app: FastifyInstance) {
           params: profileAnotherUserRequestParamsDTO,
           response: {
             401: UnauthorizedErrorResponse,
+            200: profileAnotherUserResponseDTO,
           },
           security: [{ apiKey: [] }],
         },
