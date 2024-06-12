@@ -4,17 +4,11 @@ import { db } from '../../lib/prisma'
 import { BadgeRepository } from '../badges.repository'
 
 export class PrismaBadgeRepository implements BadgeRepository {
-  async getBadgesReedemedByUserId(userId: string): Promise<Badge[]> {
-    const badges = await db.badge.findMany({
-      where: {
-        usersRedeemed: {
-          some: {
-            userId: userId,
-          },
-        },
-      },
+  async findById(badgeId: string): Promise<Badge | null> {
+    const badge = await db.badge.findUnique({
+      where: { id: badgeId },
     })
 
-    return badges
+    return badge
   }
 }

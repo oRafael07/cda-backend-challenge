@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "redeem_badges" ADD COLUMN     "redeemed_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;

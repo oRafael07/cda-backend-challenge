@@ -42,6 +42,8 @@ model RedeemBadge {
   user User @relation(fields: [userId], references: [id])
   badge Badge @relation(fields: [badgeId], references: [id])
 
+  redeemedAt DateTime @default(now()) @map("redeemed_at")
+
   @@index([userId, badgeId])
   @@map("redeem_badges")
 }

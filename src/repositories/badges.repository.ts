@@ -1,5 +1,5 @@
 import { Badge } from '@prisma/client'
 
 export interface BadgeRepository {
-  getBadgesReedemedByUserId(userId: string): Promise<Badge[]>
+  findById(badgeId: string): Promise<Badge | null>
 }
