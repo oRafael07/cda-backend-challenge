@@ -71,7 +71,7 @@ $ npm run db:migrations
 $ npm run db:seed
 ```
 
-### Start Project 🚀
+### Start Project
 
 ```
 $ npm run start
